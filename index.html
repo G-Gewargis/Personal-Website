@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Site</title>
     <link href="styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="Georges.jpeg" type="image/x-icon">
 </head>
 <body>
 
@@ -13,49 +15,114 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <main>
         <section id="home">
-            <h1>Georges Gewargis, Web Developer & CS Student</h1>
+            <div class="hero-content"> 
+                <h1>Georges Gewargis</h1>
+                <h2> Web Developer & CS Student</h2>
+                <p class="tagline">Building elegant solutions through code and creativity</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary-btn">View My Work</a>
+                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                </div>
+            </div>
         </section>
 
         <section id="about">
-            <div class="profile-picture">
-                <img src="https://avatars.githubusercontent.com/u/179293746?v=4" alt="Picture of Georges Gewargis!">
+            <div class="about-content">
+                <div class="profile-picture">
+                    <img src="Georges.jpeg" alt="Picture of Georges Gewargis!">
+                </div>
+                <div class="about-text">
+                    <p>
+                        Hi, I'm Georges Gewargis. I am a current Computer Science student at Washington University in St. Louis! 
+                        I am passionate about CS and want to enter the field as a software engineer. I am currently practicing 
+                        CSS/HTML fundamentals, as well as learning Python and Java on the side. 
+                    </p>
+                    <p>
+                        My goal is to develop innovative applications that solve real-world problems. I enjoy collaborating on team 
+                        projects and am constantly expanding my knowledge through hackathons and personal projects.
+                    </p>
+                    <a href="Georges Gewargis - Resume.pdf" class="btn download-btn" target="_blank">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>                  
+                </div>
             </div>
-            <p>
-                Hi, I'm Georges Gewargis. I am a current Computer Science student at Washington University in St. Louis! 
-                I am passionate about CS and want to enter the field as a software engineer. I am currently practicing 
-                CSS/HTML fundamentals, as well as learning Python and Java on the side. 
-            </p>
         </section>
 
         <section id="projects">
-            <div class="project">
-                <h2>NutriScan</h2>
-                <div class="project-img">
-                    <img src="Nutriscan.jpeg" alt="Logo of NutriScan">
-                </div>
-                <p>
-                    I built NutriScan at the WashU 24-Hour Hackathon, where my team developed an AI-powered app that analyzes food images 
-                    to assess nutritional content. We integrated OpenAI and Foodvisor APIs to provide personalized recipe suggestions 
-                    and track daily caloric intake. It was an exciting challenge that strengthened my skills in API integration and 
-                    front-end development!
-                </p>
-                <a href="https://github.com/LuisMorelos/Washu-Hack-Food-Information-Website.git">View Repository</a>
+            <div class="section-header">
+                <h2>Projects</h2>
             </div>
+            <div class="projects-container">
+                <div class="project">
+                    <h2>NutriScan</h2>
+                    <div class="project-img">
+                        <img src="Nutriscan.jpeg" alt="Logo of NutriScan">
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">Foodvisor API</span>
+                    </div>
+                    <p>
+                        I built NutriScan at the WashU 24-Hour Hackathon, where my team developed an AI-powered app that analyzes food images 
+                        to assess nutritional content. We integrated OpenAI and Foodvisor APIs to provide personalized recipe suggestions 
+                        and track daily caloric intake. It was an exciting challenge that strengthened my skills in API integration and 
+                        front-end development!
+                    </p>
+                    <a href="https://github.com/LuisMorelos/Washu-Hack-Food-Information-Website.git">View Repository</a>
+                </div> <!-- First project div closed -->
+        
+                <div class="project">
+                    <h2>Machine Learning Recidivism Predictor</h2>
+                    <div class="project-img">
+                        <div id="project-img2">
+                            <img src="https://images.squarespace-cdn.com/content/v1/63d40fe2cbd65e16cb8098b6/d21374fa-8723-4efa-b937-a3908a71ba5d/updated+logo+3.15.24-2.png" alt="Inspirit AI Logo">
+                        </div>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                    <p>
+                        As part of the Inspirit AI Scholars Program, my team and I built a machine learning model to predict recidivism rates 
+                        with 80% accuracy using real-world data. We prioritized fairness and bias reduction, leveraging Python, Pandas, and 
+                        Scikit-learn. This project deepened my understanding of AI’s societal impact and sparked my passion for developing 
+                        responsible AI solutions.
+                    </p>
+                </div> <!-- Second project div closed -->
+            </div> <!-- Projects-container div closed -->
+        </section>        
 
-            <div class="project">
-                <h2>Machine Learning Recidivism Predictor</h2>
-                <p>
-                    As part of the Inspirit AI Scholars Program, my team and I built a machine learning model to predict recidivism rates 
-                    with 80% accuracy using real-world data. We prioritized fairness and bias reduction, leveraging Python, Pandas, and 
-                    Scikit-learn. This project deepened my understanding of AI’s societal impact and sparked my passion for developing 
-                    responsible AI solutions.
-                </p>
+        <section id="education">
+            <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <div class="education-container">
+                <div class="education-item">
+                    <div class="education-logo">
+                        <img src="https://source.washu.edu/app/uploads/2024/08/WashU-RGB-600x400-1.jpg" alt="Washington University Logo">
+                    </div>
+                    <div class="education-details">
+                        <h3>Washington University in St. Louis</h3>
+                        <p class="degree">Bachelor of Science in Computer Science</p>
+                        <p class="duration">2024 - 2028</p>
+                        <p class="description">
+                            Coursework includes Data Structures & Algorithms, Object-Oriented Programming, 
+                            Web Development, and Machine Learning fundamentals.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
