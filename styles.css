@@ -455,3 +455,49 @@ footer {
     padding: 30px 20px;
     font-size: 0.9rem;
 }
+
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-btn {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 999;
+        font-size: 1.5rem;
+        color: rgb(237, 199, 199);
+        cursor: pointer;
+    }
+    
+    .topnav {
+        flex-direction: column;
+        padding: 15px 0;
+        min-height: 30px;
+    }
+    
+    .nav-links {
+        display: none;
+        width: 100%;
+        padding-top: 15px;
+    }
+    
+    .menu-toggle:checked ~ .nav-links {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .topnav a {
+        margin: 5px 0;
+        padding: 10px 0;
+        width: 100%;
+    }
+}
+
