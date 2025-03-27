@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Remove existing deployment directory
+        run: rm -rf deploy-repo 
+
       - name: Deploy to GitHub Pages repo
         run: |
           git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git deploy-repo
