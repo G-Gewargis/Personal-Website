@@ -21,8 +21,8 @@ jobs:
           # Remove everything except the .git folder to keep commit history
           rm -rf temp-deploy/*
           
-          # Copy new files from Personal-Website into temp-deploy
-          cp -r * temp-deploy/
+          # Copy new files from Personal-Website into temp-deploy (without copying temp-deploy itself)
+          cp -r !("temp-deploy")/* temp-deploy/
           
           # Move into the deployment repo
           cd temp-deploy
