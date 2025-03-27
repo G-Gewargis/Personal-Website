@@ -1,35 +1,24 @@
-name: Deploy to GitHub Pages Repo
+     steps:
+       - name: Checkout repository
+         uses: actions/checkout@v3
 
-on:
-  push:
-    branches:
-      - main  
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Deploy to GitHub Pages repo
-        run: |
-          # Clone g-gewargis.github.io into a temporary folder
-          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy
-          
-          # Remove everything except the .git folder to keep commit history
-          rm -rf temp-deploy/*
-          
-          # Copy new files from Personal-Website into temp-deploy (without copying temp-deploy itself)
-          cp -r !("temp-deploy")/* temp-deploy/
-          
-          # Move into the deployment repo
-          cd temp-deploy
-          
-          # Configure Git and push changes
-          git config --global user.email "g.georges@wustl.edu"
-          git config --global user.name "${{ github.actor }}"
-          git add .
-          git commit -m "Automated deployment" || echo "No changes to commit"
-          git push https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git main --force
+       - name: Deploy to GitHub Pages repo
+         run: |
+           # Clone g-gewargis.github.io into a temporary folder
+           git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy
+           
+           # Remove everything except the .git folder to keep commit history
+           rm -rf temp-deploy/*
+           
+           # Copy new files from Personal-Website into temp-deploy (without copying temp-deploy itself)
+           rsync -av --exclude 'temp-deploy' . temp-deploy/
+           
+           # Move into the deployment repo
+           cd temp-deploy
+           
+           # Configure Git and push changes
+           git config --global user.email "g.georges@wustl.edu"
+           git config --global user.name "${{ github.actor }}"
+           git add .
+           git commit -m "Automated deployment" || echo "No changes to commit"
+           git push https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git main --force
