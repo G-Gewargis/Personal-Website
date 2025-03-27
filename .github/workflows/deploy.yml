@@ -15,21 +15,29 @@ jobs:
 
       - name: Deploy to GitHub Pages repo
         run: |
-          # Clone g-gewargis.github.io into a temporary folder
-          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy
+          # Clone the empty g-gewargis.github.io repository into a temporary folder
+          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy || exit 0
           
           # Navigate into the temp-deploy folder
           cd temp-deploy
           
-          # Remove all files except the .git folder
-          find . -mindepth 1 -not -name '.git' -exec rm -rf {} +
+          # Initialize the repository if it's empty (without .git directory)
+          if [ ! -d ".git" ]; then
+            git init
+            git remote add origin https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git
+          fi
           
-          # Copy the contents of the main repository (Personal-Website) into temp-deploy
+          # Remove any existing files in temp-deploy (except for .git)
+          rm -rf !( .git ) || echo "No files to remove"
+          
+          # Copy the contents of the Personal-Website repository into temp-deploy
           cp -r ../* ./
           
-          # Configure Git and push changes
+          # Configure Git with your user credentials
           git config --global user.email "g.georges@wustl.edu"
           git config --global user.name "${{ github.actor }}"
+          
+          # Add changes, commit and push to g-gewargis.github.io repo
           git add .
           git commit -m "Automated deployment" || echo "No changes to commit"
           git push https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git main --force
