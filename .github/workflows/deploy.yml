@@ -13,14 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Remove existing deployment directory
-        run: rm -rf deploy-repo 
-
       - name: Deploy to GitHub Pages repo
         run: |
-          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git deploy-repo
-          rsync -av --delete --exclude '.git' . deploy-repo/
-          cd deploy-repo
+          # Clone g-gewargis.github.io into a temporary folder
+          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy
+          
+          # Remove everything except the .git folder to keep commit history
+          rm -rf temp-deploy/*
+          
+          # Copy new files from Personal-Website into temp-deploy
+          cp -r * temp-deploy/
+          
+          # Move into the deployment repo
+          cd temp-deploy
+          
+          # Configure Git and push changes
           git config --global user.email "g.georges@wustl.edu"
           git config --global user.name "${{ github.actor }}"
           git add .
