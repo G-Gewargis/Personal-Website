@@ -18,14 +18,14 @@ jobs:
           # Clone g-gewargis.github.io into a temporary folder
           git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git temp-deploy
           
-          # Remove everything inside the temp-deploy folder, but keep the .git folder
-          find temp-deploy/* -not -name '.git' -exec rm -rf {} +
-          
-          # Copy the contents of the main repository into temp-deploy
-          cp -r * temp-deploy/
-          
-          # Move into the deployment repo
+          # Navigate into the temp-deploy folder
           cd temp-deploy
+          
+          # Remove all files except the .git folder
+          find . -mindepth 1 -not -name '.git' -exec rm -rf {} +
+          
+          # Copy the contents of the main repository (Personal-Website) into temp-deploy
+          cp -r ../* ./
           
           # Configure Git and push changes
           git config --global user.email "g.georges@wustl.edu"
