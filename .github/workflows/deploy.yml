@@ -15,11 +15,11 @@ jobs:
 
       - name: Deploy to GitHub Pages repo
         run: |
-          git clone https://github.com/G-Gewargis/g-gewargis.github.io.git deploy-repo
+          git clone https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git deploy-repo
           rsync -av --delete --exclude '.git' . deploy-repo/
           cd deploy-repo
           git config --global user.email "g.georges@wustl.edu"
-          git config --global user.name "G-Gewargis"
+          git config --global user.name "${{ github.actor }}"
           git add .
           git commit -m "Automated deployment" || echo "No changes to commit"
           git push https://G-Gewargis:${{ secrets.DEPLOY_PAT }}@github.com/G-Gewargis/g-gewargis.github.io.git main --force
